@@ -6,11 +6,10 @@
   transform: none;
   width: 100%;
   max-width: 520px;
-  height: 100dvh;
+  height: calc(var(--view-height, 100vh) * 1);
   padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
            max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
   margin: auto;
-  container-type: size;
   display: grid;
   grid-template: "brand toolbar" 44px "score next" 74px "board board" minmax(0, 1fr)
                  "merges hint" 20px "tilt shake" 60px "collection collection" 44px
@@ -41,7 +40,7 @@
 .portrait-game .next-image-wrap, .portrait-game .next-card img { width: 45px; height: 45px; flex-shrink: 0 }
 .portrait-game .board-wrap {
   grid-area: board;
-  width: min(100cqw, calc((100cqh - 272px) * 440 / 570));
+  width: min(calc(var(--content-width, 100vw) * 1), calc((calc(var(--content-height, 100vh) * 1) - 272px) * 440 / 570));
   justify-self: center;
   align-self: center;
   user-select: none;
@@ -56,10 +55,10 @@
 .portrait-game .shake-card button { height: 44px; font-size: 12px; border-radius: 12px }
 .portrait-game .energy-label { display: none }
 .portrait-game .energy-track { height: 5px; margin: 6px 6px 0 }
-.portrait-game .collection-button { grid-area: collection; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 12px; border: 1px solid var(--line); background: #eeeddf; border-radius: 12px; font: 17px var(--serif) }
+.portrait-game .collection-button { grid-area: collection; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 12px; border: 1px solid var(--line); background: #e5eaca; border-radius: 12px; font: 17px var(--serif) }
 .collection-peek { display: flex }
 .collection-peek img { width: 30px; height: 32px; object-fit: contain; margin-right: -7px }
-.portrait-game dialog { width: min(420px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 20px; border-radius: 20px }
+.portrait-game dialog { width: min(420px, calc(100vw - 24px)); max-height: calc(calc(var(--view-height, 100vh) * 1) - 24px); padding: 20px; border-radius: 20px }
 .portrait-game .modal-close { top: 4px; right: 4px; width: 44px; height: 44px }
 .portrait-game .modal-title { font-size: 27px; margin: 10px 0 }
 .portrait-game .modal-kicker { padding: 0 24px; font-size: 9px }
@@ -85,10 +84,16 @@
 }
 @media (max-height: 620px) and (orientation: portrait) {
   .portrait-game .site-wrap { grid-template-rows: 44px 64px minmax(0, 1fr) 16px 54px 44px; row-gap: 4px }
-  .portrait-game .board-wrap { width: min(100cqw, calc((100cqh - 242px) * 440 / 570)) }
+  .portrait-game .board-wrap { width: min(calc(var(--content-width, 100vw) * 1), calc((calc(var(--content-height, 100vh) * 1) - 242px) * 440 / 570)) }
   .portrait-game .score-card { padding-top: 4px }
   .portrait-game .score-value { font-size: 23px; margin: 1px 0 2px }
   .portrait-game dialog { padding: 14px }
   .portrait-game .collection-grid { gap: 5px }
   .portrait-game .help-steps { gap: 7px; margin: 10px 0 }
 }
+
+.portrait-game .score-card{background:#234e3b}
+.portrait-game .tilt-controls button{background:#edf0dc;border-color:#bdcba9}
+.portrait-game .board-overlay h2{font-size:clamp(23px, 7vw, 30px);margin:8px 0}
+.portrait-game .overlay-flower{font-size:28px}
+.portrait-game .board-overlay p{margin-bottom:14px}

@@ -39,21 +39,20 @@ canvas:focus-visible{outline:none}
 .collection-goal{display:none}
 .spud-image{max-width:60px}
 .page-footer{height:38px;padding:0}
-dialog{max-height:calc(100dvh - 32px);overflow:auto}
+dialog{max-height:calc(calc(var(--view-height, 100vh) * 1) - 32px);overflow:auto}
 
 /* The board and side panels share the space above the full collection. */
 .compact-game .site-wrap {
-  --collection-height: clamp(50px, 15dvh, 78px);
+  --collection-height: clamp(50px, calc(var(--view-height, 100vh) * 0.15), 78px);
   position: relative;
   inset: auto;
   transform: none;
   width: 100%;
   max-width: 1280px;
-  height: 100dvh;
+  height: calc(var(--view-height, 100vh) * 1);
   margin: auto;
   padding: max(6px, env(safe-area-inset-top)) max(clamp(10px, 2vw, 26px), env(safe-area-inset-right))
            max(10px, env(safe-area-inset-bottom)) max(clamp(10px, 2vw, 26px), env(safe-area-inset-left));
-  container-type: size;
   display: grid;
   grid-template: "brand      board      toolbar" 44px
                  "intro       board      tools" minmax(0, 1fr)
@@ -75,7 +74,7 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
 .compact-game .toolbar button { padding: 0; width: 25%; min-width: 0; height: 44px; justify-content: center }
 .compact-game .board-wrap {
   grid-area: board;
-  width: min(43cqw, calc((100cqh - var(--collection-height) - 12px) * 440 / 570));
+  width: min(calc(var(--content-width, 100vw) * 0.43), calc((calc(var(--content-height, 100vh) * 1) - var(--collection-height) - 12px) * 440 / 570));
   align-self: center;
   user-select: none;
   -webkit-user-select: none;
@@ -90,24 +89,24 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
 }
 .compact-game .intro-panel { grid-area: intro }
 .compact-game .intro-panel h1 {
-  margin: 0 0 clamp(6px, 2dvh, 14px);
-  font-size: clamp(24px, min(4vw, 8dvh), 44px);
+  margin: 0 0 clamp(6px, calc(var(--view-height, 100vh) * 0.02), 14px);
+  font-size: clamp(24px, min(4vw, calc(var(--view-height, 100vh) * 0.08)), 44px);
   line-height: .99;
   letter-spacing: -.045em;
 }
 .compact-game .score-card { padding: 9px 12px 0; background: linear-gradient(115deg, #23493b, #355a43) }
 .compact-game .score-decoration { color: #cbe9a411; top: -15px; right: -7px }
-.compact-game .score-value { font-size: clamp(28px, 8dvh, 44px); margin: 2px 0 5px }
+.compact-game .score-value { font-size: clamp(28px, calc(var(--view-height, 100vh) * 0.08), 44px); margin: 2px 0 5px }
 .compact-game .score-bottom { padding: 6px 0; gap: 2px }
 .compact-game .next-card { margin-top: 9px; padding: 7px 10px; min-height: 54px; gap: 2px; background: #fcfaef }
 .compact-game .next-card strong { font-size: 16px; margin: 3px 0 0 }
-.compact-game .next-image-wrap, .compact-game .next-card img { width: clamp(34px, 12dvh, 54px); height: clamp(34px, 12dvh, 54px) }
+.compact-game .next-image-wrap, .compact-game .next-card img { width: clamp(34px, calc(var(--view-height, 100vh) * 0.12), 54px); height: clamp(34px, calc(var(--view-height, 100vh) * 0.12), 54px) }
 .compact-game .tools-panel { grid-area: tools }
 .compact-game .play-style h2 { font-size: clamp(17px, 3vw, 27px); line-height: 1.05; margin: 0 0 7px }
 .compact-game .merge-note {
   width: fit-content;
   padding: 4px 11px;
-  margin-bottom: clamp(8px, 3dvh, 16px);
+  margin-bottom: clamp(8px, calc(var(--view-height, 100vh) * 0.03), 16px);
   border-radius: 20px;
   font-size: 11px;
 }
@@ -123,7 +122,7 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   position: absolute;
   z-index: -1;
   width: clamp(32px, 6vw, 70px);
-  height: clamp(32px, 12dvh, 55px);
+  height: clamp(32px, calc(var(--view-height, 100vh) * 0.12), 55px);
   top: 3px;
   right: 5%;
   background: url("assets/potato-6.png") center / contain no-repeat;
@@ -166,18 +165,18 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   gap: 0;
 }
 .compact-game .spud-item { min-height: 44px; justify-content: center }
-.compact-game .spud-image { width: min(100%, clamp(30px, 10dvh, 54px)) }
+.compact-game .spud-image { width: min(100%, clamp(30px, calc(var(--view-height, 100vh) * 0.1), 54px)) }
 .compact-game .spud-number { margin-top: 0 }
 .compact-game .spud-item::after { display: none }
-.compact-game .board-overlay h2 { font-size: clamp(21px, 5dvh, 34px); margin: 4px 0 }
+.compact-game .board-overlay h2 { font-size: clamp(21px, calc(var(--view-height, 100vh) * 0.05), 34px); margin: 4px 0 }
 .compact-game .overlay-flower { font-size: 25px }
 .compact-game .board-overlay p { margin-bottom: 12px }
 .compact-game .board-overlay button { min-height: 44px }
-.compact-game .board-message { font-size: clamp(16px, 4dvh, 24px) }
+.compact-game .board-message { font-size: clamp(16px, calc(var(--view-height, 100vh) * 0.04), 24px) }
 .compact-game dialog {
   width: min(580px, calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right)));
-  max-height: calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-  padding: clamp(12px, 4dvh, 24px);
+  max-height: calc(calc(var(--view-height, 100vh) * 1) - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding: clamp(12px, calc(var(--view-height, 100vh) * 0.04), 24px);
   border-radius: 18px;
   overscroll-behavior: contain;
 }
@@ -189,7 +188,7 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   height: 44px;
 }
 .compact-game .modal-kicker { padding-right: 26px; font-size: 9px; color: #677955 }
-.compact-game .modal-title { margin: 5px 0; font-size: clamp(24px, 7.5dvh, 35px); line-height: 1.06 }
+.compact-game .modal-title { margin: 5px 0; font-size: clamp(24px, calc(var(--view-height, 100vh) * 0.075), 35px); line-height: 1.06 }
 .compact-game .modal-copy { margin: 5px 0; font-size: 12px; line-height: 1.45; color: #61725a }
 .compact-game .modal-actions { margin-top: 10px }
 .compact-game .modal-actions button { min-height: 44px }
@@ -212,7 +211,7 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   position: relative;
   align-self: center;
   width: 85%;
-  height: clamp(88px, 32dvh, 145px);
+  height: clamp(88px, calc(var(--view-height, 100vh) * 0.32), 145px);
   margin: 12px auto;
 }
 .compact-game #modal-content:has(.modal-art) > :not(.modal-art) { grid-column: 2; text-align: left }
@@ -261,6 +260,11 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   .compact-game .help-steps { gap: 5px; margin: 7px 0 }
   .compact-game .help-steps li { padding: 6px 8px }
 }
+@media (max-height: 350px) {
+  .compact-game .play-style h2 { display: none }
+  .compact-game .board-footer > span { display: none }
+  .compact-game .board-footer { justify-content: center }
+}
 @media (max-width: 650px) {
   .compact-game .collection-intro { width: 56px }
   .compact-game .collection-intro h2 { font-size: 15px }
@@ -290,7 +294,7 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
   .compact-game #modal-content:has(.help-steps) {
     display: grid;
     grid-template-rows: auto auto minmax(0, 1fr) auto;
-    max-height: calc(100dvh - 48px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-height: calc(calc(var(--view-height, 100vh) * 1) - 48px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   }
   .compact-game .help-steps { overflow: auto }
 }
@@ -307,9 +311,9 @@ dialog{max-height:calc(100dvh - 32px);overflow:auto}
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
-  .compact-game .board-wrap { width: min(39cqw, calc(100cqh * 440 / 570)) }
+  .compact-game .board-wrap { width: min(calc(var(--content-width, 100vw) * 0.39), calc(calc(var(--content-height, 100vh) * 1) * 440 / 570)) }
   .compact-game .brand { font-size: clamp(20px, 3vw, 27px) }
-  .compact-game .intro-panel h1 { font-size: clamp(18px, 6dvh, 26px); line-height: 1.06; margin: 0 0 8px }
+  .compact-game .intro-panel h1 { font-size: clamp(18px, calc(var(--view-height, 100vh) * 0.06), 26px); line-height: 1.06; margin: 0 0 8px }
   .compact-game .intro-panel h1 br { display: none }
   .compact-game .intro-panel h1 em::before { content: " " }
   .compact-game .score-top, .compact-game .next-card .eyebrow { font-size: 10px; letter-spacing: 1px }
